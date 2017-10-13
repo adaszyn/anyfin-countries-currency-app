@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import "./ExchangeCalculator.css"
 
 export default class ExchangeCalculator extends Component {
     state = {  }

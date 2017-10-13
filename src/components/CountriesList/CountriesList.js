@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './CountriesList.css'
 
 export default class CountriesList extends Component {
     constructor () {
@@ -38,20 +39,22 @@ export default class CountriesList extends Component {
     }
     render() {
         return (
-            <table class="u-full-width">
-                <thead>
-                    <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Capital</th>
-                    <th>Currency</th>
-                    <th>Ammount in SEK</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {this.renderCountryRows()}
-                </tbody>
-                </table>
+            <div className="CountriesList">
+                <table class="u-full-width">
+                    <thead>
+                        <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Capital</th>
+                        <th>Currency</th>
+                        <th>Ammount in SEK</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.renderCountryRows()}
+                    </tbody>
+                    </table>
+                </div>
         );
     }
 }
