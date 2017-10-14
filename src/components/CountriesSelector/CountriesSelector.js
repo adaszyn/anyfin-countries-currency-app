@@ -10,7 +10,6 @@ export default class CountriesSelector extends Component {
     render() {
         const { countries, onChange } = this.props;
         const selectedCountries = this.props.countries.filter(country => this.props.selectedCountriesIds.includes(country.id))
-        console.log(this.props.selectedCountriesIds, selectedCountries)
         return (
             <div className="CountriesSelector">
                 <Select
