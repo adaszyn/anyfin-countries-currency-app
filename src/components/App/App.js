@@ -1,83 +1,86 @@
-import React, { Component } from 'react';
-import CountriesList from '../CountriesList/CountriesList';
-import CountriesSelector from '../CountriesSelector/CountriesSelector';
-import ExchangeCalculator from '../ExchangeCalculator/ExchangeCalculator';
-import Navbar from '../Navbar/Navbar';
-import Footer from '../Footer/Footer';
-import { getAllCountries } from '../../logic/get-countries';
-import { getExchangeRates } from '../../logic/get-exchange-rates';
-import './App.css';
+import React, { Component } from "react";
+import CountriesList from "../CountriesList/CountriesList";
+import CountriesSelector from "../CountriesSelector/CountriesSelector";
+import ExchangeCalculator from "../ExchangeCalculator/ExchangeCalculator";
+import Navbar from "../Navbar/Navbar";
+import Footer from "../Footer/Footer";
+import { getAllCountries } from "../../logic/get-countries";
+import { getExchangeRates } from "../../logic/get-exchange-rates";
+import "./App.css";
 
 class App extends Component {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
       countries: [],
       selectedCountriesIds: [],
       exchangeRates: [],
       value: 0
-    }
+    };
   }
-  augmentCountriesWithLabelAndValue (countries) {
+  augmentCountriesWithLabelAndValue(countries) {
     for (let country of countries) {
       country.value = country.id;
       country.label = country.name;
     }
   }
 
-  onValueChange (value) {
+  onValueChange(value) {
     this.setState({
       value
-    })
+    });
   }
 
-  async componentDidMount () {
+  async componentDidMount() {
     try {
-      const countriesRequest = await getAllCountries()
-      const exchangeRates = await getExchangeRates()
-      const {countries} = countriesRequest.data;
+      const countriesRequest = await getAllCountries();
+      const exchangeRates = await getExchangeRates();
+      const { countries } = countriesRequest.data;
       this.augmentCountriesWithLabelAndValue(countries);
       this.setState({
         countries,
         exchangeRates
-      })
+      });
     } catch (e) {
       this.setState({
         countries: []
-      })
+      });
     }
   }
 
-  onSelectedCountriesChanged (selectedCountries) {
+  onSelectedCountriesChanged(selectedCountries) {
     if (!Array.isArray(selectedCountries)) {
-      selectedCountries = [selectedCountries]
+      selectedCountries = [selectedCountries];
     }
-    const selectedCountriesIds = selectedCountries.map(country => country.id)
+    const selectedCountriesIds = selectedCountries.map(country => country.id);
     this.setState({
       selectedCountriesIds
-    })
+    });
   }
   render() {
     return (
-      <div class="App container">
+      <div className="App container">
         <Navbar />
-        <div class="row">
+        <div className="row">
           <CountriesSelector
             onChange={this.onSelectedCountriesChanged.bind(this)}
             selectedCountriesIds={this.state.selectedCountriesIds}
-            countries={this.state.countries} />
+            countries={this.state.countries}
+          />
         </div>
-        <div class="row">
+        <div className="row">
           <ExchangeCalculator
             onChange={this.onValueChange.bind(this)}
-            value={this.state.value} />
+            value={this.state.value}
+          />
         </div>
-        <div class="row">
+        <div className="row">
           <CountriesList
             value={this.state.value}
             exchangeRates={this.state.exchangeRates}
             selectedCountriesIds={this.state.selectedCountriesIds}
-            countries={this.state.countries} />
+            countries={this.state.countries}
+          />
         </div>
         <Footer />
       </div>

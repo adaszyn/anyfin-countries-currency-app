@@ -5,7 +5,7 @@ import './Navbar.css'
 export default class Navbar extends Component {
   render() {
     return (
-      <nav class="Navbar">
+      <nav className="Navbar">
         <img alt="logo" width={100} src={logo} />
       </nav>
     );
