@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.png';
 import CountriesList from '../CountriesList/CountriesList';
 import CountriesSelector from '../CountriesSelector/CountriesSelector';
 import ExchangeCalculator from '../ExchangeCalculator/ExchangeCalculator';
+import Navbar from '../Navbar/Navbar';
+import Footer from '../Footer/Footer';
 import { getAllCountries } from '../../logic/get-countries';
 import { getExchangeRates } from '../../logic/get-exchange-rates';
 import './App.css';
@@ -59,9 +60,7 @@ class App extends Component {
   render() {
     return (
       <div class="App container">
-        <nav class="Navbar">
-          <img width={200} src={logo}/>
-        </nav>
+        <Navbar />
         <div class="row">
           <CountriesSelector
             onChange={this.onSelectedCountriesChanged.bind(this)}
@@ -80,9 +79,7 @@ class App extends Component {
             selectedCountriesIds={this.state.selectedCountriesIds}
             countries={this.state.countries} />
         </div>
-        <footer>
-          <span style={{float: "right"}}>github.com/adaszyn</span>
-        </footer>
+        <Footer />
       </div>
     );
   }
