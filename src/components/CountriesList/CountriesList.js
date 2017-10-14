@@ -30,7 +30,7 @@ export default class CountriesList extends Component {
     return selectedCountries.map(country => {
       const rate = this.rates.get(country.currency.id);
       const amount = rate
-        ? Math.round(rate * this.props.value * 100) / 100
+        ? Math.round(rate * this.props.value * 100) / 100 + " " + country.currency.id
         : "-";
       return (
         <tr key={country.id}>
@@ -53,7 +53,7 @@ export default class CountriesList extends Component {
               <th>Name</th>
               <th>Capital</th>
               <th>Currency</th>
-              <th>Ammount in SEK</th>
+              <th>From SEK</th>
             </tr>
           </thead>
           <tbody>{this.renderCountryRows()}</tbody>
